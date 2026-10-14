@@ -140,6 +140,8 @@ It is also a portfolio piece for [MCCreative Studio](https://www.mccreativestudi
 | **Tooling** | ESLint, nodemon, dotenv |
 
 ## Getting started
+git clone https://github.com/ilkckn/Blackline-Studio.git
+cd Blackline-Studio
 
 ### Prerequisites
 
