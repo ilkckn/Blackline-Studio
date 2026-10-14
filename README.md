@@ -86,8 +86,14 @@ It is also a portfolio piece for [MCCreative Studio](https://www.mccreativestudi
 
 ## Live demo
 
-- **Frontend:** _coming soon_
-- **API:** _coming soon_
+- ## Live demo
+
+- **App:** https://client-sigma-two-55.vercel.app
+- **API health check:** https://mccreative-blackline-api.onrender.com/api/health
+
+> The API runs on a free Render instance that sleeps when idle, so the very first
+> request can take up to a minute. After that, everything is fast.
+
 
 ## Features
 
