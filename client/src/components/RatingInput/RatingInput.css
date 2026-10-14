@@ -1,0 +1,40 @@
+.rating-input {
+  display: flex;
+  gap: 0.4rem;
+  min-width: 0;
+  border: 0;
+
+  .rating-star {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4.8rem;
+    height: 4.8rem;
+    border-radius: 1rem;
+    color: var(--amber);
+    font-size: 4rem;
+    cursor: pointer;
+    transition: transform 0.15s;
+
+    &:hover {
+      transform: scale(1.12);
+    }
+
+    /* Klavyeyle odaklanınca halka */
+    &:has(input:focus-visible) {
+      outline: 0.3rem solid var(--t100);
+      outline-offset: 0.2rem;
+    }
+  }
+}
+
+@media (max-width: 390px) {
+  .rating-input {
+    .rating-star {
+      width: 4.4rem;
+      height: 4.4rem;
+      font-size: 3.6rem;
+    }
+  }
+}

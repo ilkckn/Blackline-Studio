@@ -1,0 +1,100 @@
+.final-cta {
+  background-image: var(--grad);
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3.6rem;
+    padding-block: clamp(7.2rem, 10vw, 12.8rem);
+  }
+
+  .title {
+    color: var(--t0);
+    font-size: clamp(5.2rem, 9vw, 14.8rem);
+    font-weight: 900;
+    line-height: 0.88;
+    letter-spacing: -0.01em;
+  }
+
+  .text {
+    max-width: 48rem;
+    color: var(--t0);
+    font-size: 1.9rem;
+    font-weight: 500;
+    line-height: 1.55;
+    text-wrap: pretty;
+  }
+
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.2rem 2.8rem;
+  }
+
+  /* Gradyan zeminde link koyu olsun */
+  .browse-link {
+    color: var(--t0);
+    text-decoration-color: var(--t0);
+  }
+}
+
+/* =====================================================================
+   RESPONSIVE
+   ===================================================================== */
+
+@media (max-width: 1024px) {
+  .final-cta {
+    .content {
+      gap: 3.2rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .final-cta {
+    .text {
+      font-size: 1.8rem;
+    }
+  }
+}
+
+@media (max-width: 430px) {
+  .final-cta {
+    .content {
+      gap: 2.8rem;
+    }
+
+    .text {
+      font-size: 1.7rem;
+    }
+
+    .buttons {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+      gap: 0.8rem;
+    }
+
+    .buttons .btn {
+      width: 100%;
+    }
+
+    .buttons .textlink {
+      justify-content: center;
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .final-cta {
+    .title {
+      font-size: 4.8rem;
+    }
+
+    .text {
+      font-size: 1.6rem;
+    }
+  }
+}

@@ -1,0 +1,324 @@
+.dashboard {
+  display: grid;
+  grid-template-columns: 28rem minmax(0, 1fr);
+  min-height: 100dvh;
+  background-color: var(--t0);
+
+  /* ---------- Sol menü ---------- */
+  .sidebar {
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    height: 100dvh;
+    padding: 3.2rem 2.4rem;
+    overflow-y: auto;
+    border-right: 1px solid var(--t30);
+    background-color: var(--t10);
+  }
+
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 1rem;
+    min-height: 4.4rem;
+    color: var(--t100);
+    text-decoration: none;
+
+    .logo-diamond {
+      width: 1.3rem;
+      height: 1.3rem;
+      background-image: var(--grad);
+      transform: rotate(45deg);
+    }
+
+    .logo-text {
+      font-size: 3rem;
+      font-weight: 900;
+      letter-spacing: 0.03em;
+      line-height: 1;
+    }
+  }
+
+  .menu-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+
+  .area-title {
+    align-self: flex-start;
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  /* Menü satırı: hem bağlantı hem buton için */
+  .menu-link {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    width: 100%;
+    min-height: 4.8rem;
+    padding-inline: 1.4rem;
+    border: 0;
+    border-radius: 1.4rem;
+    background-color: transparent;
+    color: var(--t90);
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-align: left;
+    text-decoration: none;
+    transition:
+      background-color 0.2s,
+      color 0.2s;
+
+    svg {
+      flex-shrink: 0;
+      font-size: 2.4rem;
+    }
+
+    &:hover {
+      background-color: var(--t20);
+      color: var(--t100);
+    }
+
+    /* Açık olan sayfa: gradyan */
+    &.active {
+      background-image: var(--grad-deep);
+      color: var(--white);
+    }
+  }
+
+  .sidebar-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: auto;
+  }
+
+  .user-box {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-top: 1.6rem;
+    padding: 1.6rem 1.4rem 0;
+    border-top: 1px solid var(--t30);
+  }
+
+  .avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 4.4rem;
+    height: 4.4rem;
+    border-radius: 50%;
+    background-image: var(--grad-deep);
+    color: var(--white);
+    font-family: var(--font1);
+    font-size: 2.2rem;
+    font-weight: 900;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+  }
+
+  .user-name {
+    color: var(--t100);
+    font-size: 1.5rem;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+  }
+
+  .user-email {
+    color: var(--t70);
+    font-size: 1.3rem;
+    overflow-wrap: anywhere;
+  }
+
+  /* ---------- Sağ: sayfa ---------- */
+  .dashboard-main {
+    min-width: 0;
+  }
+}
+
+/* =====================================================================
+   RESPONSIVE
+   ===================================================================== */
+
+@media (max-width: 1280px) {
+  .dashboard {
+    grid-template-columns: 26rem minmax(0, 1fr);
+  }
+}
+
+/* Tablet ve altı: menü üstte ince bir çubuk olur */
+@media (max-width: 1024px) {
+  .dashboard {
+    grid-template-columns: minmax(0, 1fr);
+    /* Üst çubuk içeriği kadar yer kaplasın, kalan boşluğu sayfa alsın.
+       Bu satır olmazsa sayfa kısa olduğunda fazla yükseklik çubuğa da dağılır. */
+    grid-template-rows: auto minmax(0, 1fr);
+
+    .sidebar {
+      position: static;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      /* Satırlar yukarıdan dizilsin, aralarına boşluk dağılmasın */
+      align-content: flex-start;
+      gap: 1.2rem 2.4rem;
+      height: auto;
+      padding: 1.6rem var(--gutter);
+      overflow-y: visible;
+      border-right: 0;
+      border-bottom: 1px solid var(--t30);
+    }
+
+    /* Menü satırı: "Artist panel" solda, linkler sağda, ikisi dikeyde ortalı */
+    .menu-group {
+      order: 3;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      gap: 1.2rem;
+    }
+
+    /* Etiket tek satırda kalsın ve linklerle aynı hizada dursun */
+    .area-title {
+      flex-shrink: 0;
+      align-self: center;
+      white-space: nowrap;
+    }
+
+    /* Linkler sığmazsa yana kaydırılabilir */
+    .menu {
+      flex-direction: row;
+      min-width: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .menu-link {
+      width: auto;
+      white-space: nowrap;
+    }
+
+    /* "Back to site", "Log out" ve kullanıcı, ilk satırın sağında */
+    .sidebar-bottom {
+      flex-direction: row;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0;
+      margin-left: auto;
+    }
+
+    .sidebar-bottom .menu-link {
+      width: auto;
+      padding-inline: 1.2rem;
+    }
+
+    .user-box {
+      margin-top: 0;
+      padding: 0 0 0 1.2rem;
+      border-top: 0;
+      border-left: 1px solid var(--t30);
+    }
+
+    .user-info {
+      display: none;
+    }
+  }
+}
+
+/* Telefonlar: "Back to site" ve "Log out" sadece ikon olur,
+   menü linkleri biraz küçülür */
+@media (max-width: 560px) {
+  .dashboard {
+    .sidebar-bottom .menu-link span {
+      display: none;
+    }
+
+    .sidebar-bottom .menu-link {
+      justify-content: center;
+      min-width: 4.8rem;
+      padding-inline: 0;
+    }
+
+    /* Üç link var: "Artist panel" yazısı gizlenir (sayfa başlığında zaten var),
+       linkler satırı eşit paylaşır */
+    .area-title {
+      display: none;
+    }
+
+    .menu {
+      width: 100%;
+    }
+
+    .menu-group .menu-link {
+      flex: 1 1 0;
+      justify-content: center;
+      gap: 0.8rem;
+      min-height: 4rem;
+      padding-inline: 0.8rem;
+      font-size: 1.4rem;
+    }
+
+    .menu-group .menu-link svg {
+      font-size: 2rem;
+    }
+
+    /* Dört ya da daha fazla link varsa (admin) sadece ikon görünür */
+    .menu:has(> :nth-child(4)) .menu-link span {
+      display: none;
+    }
+
+    .menu:has(> :nth-child(4)) .menu-link svg {
+      font-size: 2.4rem;
+    }
+  }
+}
+
+@media (max-width: 430px) {
+  .dashboard {
+    .logo .logo-text {
+      font-size: 2.6rem;
+    }
+
+    .area-title {
+      font-size: 1.1rem;
+      letter-spacing: 0.12em;
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .dashboard {
+    .logo .logo-text {
+      font-size: 2.4rem;
+    }
+
+    .menu-group {
+      gap: 0.8rem;
+    }
+
+    .menu-group .menu-link {
+      gap: 0.6rem;
+      padding-inline: 1rem;
+      font-size: 1.3rem;
+    }
+  }
+}

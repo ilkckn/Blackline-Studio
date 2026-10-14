@@ -1,0 +1,350 @@
+.admin-reviews {
+  display: flex;
+  flex-direction: column;
+  gap: 2.8rem;
+  max-width: 100rem;
+  padding: 5.6rem 4.8rem 8rem;
+
+  .head {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.6rem;
+  }
+
+  .title {
+    color: var(--t100);
+    font-size: clamp(5rem, 6vw, 8.8rem);
+    font-weight: 900;
+    line-height: 0.9;
+  }
+
+  .text {
+    max-width: 56rem;
+    color: var(--t80);
+    font-size: 1.7rem;
+    line-height: 1.55;
+    text-wrap: pretty;
+  }
+
+  /* ---------- Arama ve filtre ---------- */
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.6rem 2.4rem;
+  }
+
+  .search-box {
+    flex: 1 1 28rem;
+    min-width: 0;
+  }
+
+  .search {
+    width: 100%;
+    min-height: 5.2rem;
+    padding-inline: 1.8rem;
+    border: 1.5px solid var(--t30);
+    border-radius: var(--radius-pill);
+    background-color: var(--t10);
+    color: var(--t100);
+    font-size: 1.6rem;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
+
+    &::placeholder {
+      color: var(--t70);
+      opacity: 0.7;
+    }
+
+    &:hover {
+      border-color: var(--violet);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: var(--pink);
+      box-shadow: 0 0 0 0.3rem color-mix(in srgb, var(--pink) 25%, transparent);
+    }
+  }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 4.4rem;
+    padding-inline: 2rem;
+    border: 1.5px solid var(--t30);
+    border-radius: var(--radius-pill);
+    background-color: transparent;
+    color: var(--t90);
+    font-family: var(--font2);
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition:
+      border-color 0.2s,
+      background-color 0.2s;
+
+    &:hover {
+      border-color: var(--violet);
+      background-color: var(--t20);
+    }
+  }
+
+  .chip-on {
+    border-color: transparent;
+    background-image: var(--grad-deep);
+    color: var(--white);
+
+    &:hover {
+      border-color: transparent;
+      background-color: transparent;
+    }
+  }
+
+  /* ---------- Yorum kartları ---------- */
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+
+  .review-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    padding: 2.8rem;
+    border: 1px solid var(--t30);
+    border-radius: var(--radius-card);
+    background-color: var(--t10);
+
+    .stars {
+      color: var(--amber);
+      font-size: 2rem;
+    }
+  }
+
+  .review-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem 1.6rem;
+  }
+
+  .review-date {
+    color: var(--t70);
+    font-size: 1.4rem;
+  }
+
+  .review-comment {
+    color: var(--t90);
+    font-size: 1.7rem;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+  }
+
+  .review-meta {
+    color: var(--t70);
+    font-size: 1.5rem;
+
+    strong {
+      color: var(--t100);
+      font-weight: 600;
+    }
+  }
+
+  .review-actions {
+    display: flex;
+    align-items: center;
+    min-height: 4.4rem;
+  }
+
+  .delete-button {
+    display: inline-flex;
+    align-items: center;
+    min-height: 4.4rem;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    color: var(--t70);
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.5rem;
+    transition: color 0.2s;
+
+    &:hover {
+      color: var(--pink);
+    }
+  }
+
+  /* "Emin misin?" satırı */
+  .confirm {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.8rem 1.2rem;
+  }
+
+  .confirm-text {
+    color: var(--t100);
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .confirm-yes,
+  .confirm-no {
+    min-height: 4.4rem;
+    padding-inline: 2rem;
+    border: 1.5px solid var(--t30);
+    border-radius: var(--radius-pill);
+    background-color: transparent;
+    color: var(--t90);
+    font-size: 1.4rem;
+    font-weight: 600;
+    transition:
+      border-color 0.2s,
+      color 0.2s,
+      background-color 0.2s;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  .confirm-yes {
+    border-color: var(--pink);
+    background-color: color-mix(in srgb, var(--pink) 16%, transparent);
+    color: var(--t100);
+
+    &:hover:not(:disabled) {
+      background-color: color-mix(in srgb, var(--pink) 30%, transparent);
+    }
+  }
+
+  .confirm-no:hover:not(:disabled) {
+    border-color: var(--violet);
+    color: var(--t100);
+  }
+
+  /* ---------- Mesajlar, yükleniyor ve boş durumlar ---------- */
+  .error {
+    padding: 1.2rem 1.6rem;
+    border: 1px solid color-mix(in srgb, var(--pink) 60%, transparent);
+    border-radius: 1.2rem;
+    background-color: color-mix(in srgb, var(--pink) 12%, transparent);
+    color: var(--t100);
+    font-size: 1.4rem;
+    line-height: 1.4;
+  }
+
+  .skeleton {
+    background-image: linear-gradient(
+      110deg,
+      var(--t10) 30%,
+      var(--t20) 50%,
+      var(--t10) 70%
+    );
+    background-size: 200% 100%;
+    animation: admin-reviews-shimmer 1.4s linear infinite;
+  }
+
+  .review-skeleton {
+    height: 18rem;
+    border-radius: var(--radius-card);
+  }
+
+  .notice {
+    padding: 5.6rem 2.4rem;
+    border: 1px dashed var(--t30);
+    border-radius: var(--radius-card);
+    color: var(--t80);
+    font-size: 1.7rem;
+    text-align: center;
+  }
+}
+
+@keyframes admin-reviews-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* =====================================================================
+   RESPONSIVE
+   ===================================================================== */
+
+@media (max-width: 1280px) {
+  .admin-reviews {
+    padding-inline: 3.2rem;
+
+    .review-card {
+      padding: 2.4rem;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .admin-reviews {
+    gap: 2.4rem;
+    max-width: none;
+    padding: 4rem var(--gutter) 6.4rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .admin-reviews {
+    gap: 2rem;
+    padding-top: 3.2rem;
+
+    .review-card {
+      padding: 2.2rem 2rem;
+    }
+
+    .review-comment {
+      font-size: 1.6rem;
+    }
+
+    .filters {
+      width: 100%;
+      gap: 0.8rem;
+    }
+
+    .chip {
+      flex: 1 1 auto;
+      justify-content: center;
+      padding-inline: 1.2rem;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+@media (max-width: 390px) {
+  .admin-reviews {
+    .review-card {
+      padding: 2rem 1.8rem;
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .admin-reviews {
+    .title {
+      font-size: 4.8rem;
+    }
+
+    .notice {
+      padding: 4.8rem 1.8rem;
+    }
+  }
+}

@@ -1,0 +1,573 @@
+.admin-bookings {
+  display: flex;
+  flex-direction: column;
+  gap: 3.2rem;
+  max-width: 110rem;
+  padding: 5.6rem 4.8rem 8rem;
+
+  .head {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.6rem;
+  }
+
+  .title {
+    color: var(--t100);
+    font-size: clamp(5rem, 6vw, 8.8rem);
+    font-weight: 900;
+    line-height: 0.9;
+  }
+
+  .text {
+    max-width: 52rem;
+    color: var(--t80);
+    font-size: 1.7rem;
+    line-height: 1.55;
+    text-wrap: pretty;
+  }
+
+  /* ---------- Sekmeler ---------- */
+  .tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .tab {
+    display: inline-flex;
+    align-items: center;
+    min-height: 4.4rem;
+    padding-inline: 2.2rem;
+    border: 1.5px solid var(--t30);
+    border-radius: var(--radius-pill);
+    background-color: transparent;
+    color: var(--t90);
+    font-family: var(--font2);
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition:
+      border-color 0.2s,
+      background-color 0.2s;
+
+    &:hover {
+      border-color: var(--violet);
+      background-color: var(--t20);
+    }
+  }
+
+  .tab-on {
+    border-color: transparent;
+    background-image: var(--grad-deep);
+    color: var(--white);
+
+    &:hover {
+      border-color: transparent;
+      background-color: transparent;
+    }
+  }
+
+  /* ---------- Liste ---------- */
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .booking-card {
+    display: grid;
+    grid-template-columns: 11rem minmax(0, 1fr);
+    gap: 3.2rem;
+    padding: 3.2rem;
+    border: 1px solid var(--t30);
+    border-radius: var(--radius-card);
+    background-color: var(--t10);
+  }
+
+  /* Durumun rengi (rozette kullanılıyor) */
+  .pending {
+    --status: var(--amber);
+  }
+
+  .confirmed {
+    --status: var(--violet);
+  }
+
+  .completed {
+    --status: var(--pink);
+  }
+
+  .cancelled {
+    --status: var(--t70);
+  }
+
+  .date-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    align-self: start;
+    padding: 2rem 1rem;
+    border: 1px solid var(--t30);
+    border-radius: 2rem;
+    background-color: var(--t5);
+  }
+
+  .date-day {
+    font-size: 6.4rem;
+    font-weight: 900;
+    line-height: 0.9;
+  }
+
+  .date-month {
+    color: var(--t80);
+  }
+
+  .details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.2rem;
+    min-width: 0;
+  }
+
+  .badge {
+    padding: 0.6rem 1.4rem;
+    border: 1.5px solid var(--status);
+    border-radius: var(--radius-pill);
+    background-color: color-mix(in srgb, var(--status) 20%, transparent);
+    color: var(--t100);
+  }
+
+  .customer-name {
+    color: var(--t100);
+    font-size: 3.6rem;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .info-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    color: var(--t90);
+    font-size: 1.6rem;
+    font-weight: 600;
+    line-height: 1.4;
+
+    svg {
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+      color: var(--pink);
+      font-size: 2.2rem;
+    }
+  }
+
+  .phone-link {
+    color: var(--t100);
+    text-decoration: underline;
+    text-decoration-color: var(--pink);
+    text-decoration-thickness: 0.2rem;
+    text-underline-offset: 0.4rem;
+  }
+
+  .description {
+    max-width: 64rem;
+    color: var(--t80);
+    font-size: 1.6rem;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+  }
+
+  /* ---------- Yükleniyor ve boş durumlar ---------- */
+  .skeleton {
+    background-image: linear-gradient(
+      110deg,
+      var(--t10) 30%,
+      var(--t20) 50%,
+      var(--t10) 70%
+    );
+    background-size: 200% 100%;
+    animation: admin-bookings-shimmer 1.4s linear infinite;
+  }
+
+  .booking-skeleton {
+    height: 20rem;
+    border-radius: var(--radius-card);
+  }
+
+  .notice {
+    padding: 6rem 2.4rem;
+    border: 1px dashed var(--t30);
+    border-radius: var(--radius-card);
+    color: var(--t80);
+    font-size: 1.7rem;
+    text-align: center;
+  }
+  /* ---------- İşlem butonları ---------- */
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.8rem 2.4rem;
+    margin-top: 0.8rem;
+  }
+
+  .action-primary {
+    min-height: 4.8rem;
+    padding-inline: 2.4rem;
+  }
+
+  .action-secondary {
+    display: inline-flex;
+    align-items: center;
+    min-height: 4.4rem;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    color: var(--t70);
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.5rem;
+    transition: color 0.2s;
+
+    &:hover:not(:disabled) {
+      color: var(--pink);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  /* "Emin misin?" satırı */
+  .confirm {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.8rem 1.2rem;
+  }
+
+  .confirm-text {
+    color: var(--t100);
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .confirm-yes,
+  .confirm-no {
+    min-height: 4.4rem;
+    padding-inline: 2rem;
+    border: 1.5px solid var(--t30);
+    border-radius: var(--radius-pill);
+    background-color: transparent;
+    color: var(--t90);
+    font-size: 1.4rem;
+    font-weight: 600;
+    transition:
+      border-color 0.2s,
+      color 0.2s,
+      background-color 0.2s;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  .confirm-yes {
+    border-color: var(--pink);
+    background-color: color-mix(in srgb, var(--pink) 16%, transparent);
+    color: var(--t100);
+
+    &:hover:not(:disabled) {
+      background-color: color-mix(in srgb, var(--pink) 30%, transparent);
+    }
+  }
+
+  .confirm-no:hover:not(:disabled) {
+    border-color: var(--violet);
+    color: var(--t100);
+  }
+
+  /* ---------- Hata kutusu ---------- */
+  .error {
+    padding: 1.2rem 1.6rem;
+    border: 1px solid color-mix(in srgb, var(--pink) 60%, transparent);
+    border-radius: 1.2rem;
+    background-color: color-mix(in srgb, var(--pink) 12%, transparent);
+    color: var(--t100);
+    font-size: 1.4rem;
+    line-height: 1.4;
+  }
+  /* ---------- Arama ve filtre ---------- */
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.6rem 2.4rem;
+  }
+
+  .search-box {
+    flex: 1 1 28rem;
+    min-width: 0;
+  }
+
+  .search {
+    width: 100%;
+    min-height: 5.2rem;
+    padding-inline: 1.8rem;
+    border: 1.5px solid var(--t30);
+    border-radius: var(--radius-pill);
+    background-color: var(--t10);
+    color: var(--t100);
+    font-size: 1.6rem;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
+
+    &::placeholder {
+      color: var(--t70);
+      opacity: 0.7;
+    }
+
+    &:hover {
+      border-color: var(--violet);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: var(--pink);
+      box-shadow: 0 0 0 0.3rem color-mix(in srgb, var(--pink) 25%, transparent);
+    }
+  }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 4.4rem;
+    padding-inline: 2rem;
+    border: 1.5px solid var(--t30);
+    border-radius: var(--radius-pill);
+    background-color: transparent;
+    color: var(--t90);
+    font-family: var(--font2);
+    font-size: 1.3rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition:
+      border-color 0.2s,
+      background-color 0.2s;
+
+    &:hover {
+      border-color: var(--violet);
+      background-color: var(--t20);
+    }
+  }
+
+  .chip-on {
+    border-color: transparent;
+    background-image: var(--grad-deep);
+    color: var(--white);
+
+    &:hover {
+      border-color: transparent;
+      background-color: transparent;
+    }
+  }
+
+  /* ---------- Kart: sanatçı satırı ve iletişim bağlantıları ---------- */
+  .with-artist {
+    margin-top: -0.4rem;
+    color: var(--t80);
+    font-size: 1.6rem;
+
+    strong {
+      color: var(--t100);
+    }
+  }
+
+  .contact-link {
+    color: var(--t100);
+    overflow-wrap: anywhere;
+    text-decoration: underline;
+    text-decoration-color: var(--pink);
+    text-decoration-thickness: 0.2rem;
+    text-underline-offset: 0.4rem;
+  }
+}
+
+@keyframes admin-bookings-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* =====================================================================
+   RESPONSIVE
+   ===================================================================== */
+
+@media (max-width: 1280px) {
+  .admin-bookings {
+    padding-inline: 3.2rem;
+
+    .booking-card {
+      gap: 2.8rem;
+      padding: 2.8rem;
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .admin-bookings {
+    gap: 2.8rem;
+    padding: 4rem var(--gutter) 6.4rem;
+
+    .booking-card {
+      grid-template-columns: 9.6rem minmax(0, 1fr);
+    }
+
+    .date-day {
+      font-size: 5.2rem;
+    }
+  }
+}
+
+@media (max-width: 820px) {
+  .admin-bookings {
+    .customer-name {
+      font-size: 3.2rem;
+    }
+  }
+}
+
+/* Telefonlar: tarih kutusu üstte yatay durur */
+@media (max-width: 560px) {
+  .admin-bookings {
+    .booking-card {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .date-box {
+      flex-direction: row;
+      align-items: baseline;
+      justify-content: flex-start;
+      gap: 1rem;
+      align-self: stretch;
+      padding: 1.2rem 1.8rem;
+    }
+
+    .date-day {
+      font-size: 4rem;
+    }
+  }
+}
+
+@media (max-width: 430px) {
+  .admin-bookings {
+    gap: 2.4rem;
+    padding-top: 3.2rem;
+
+    .booking-card {
+      padding: 2.2rem 2rem;
+    }
+
+    .customer-name {
+      font-size: 3rem;
+    }
+
+    .tabs {
+      gap: 0.8rem;
+    }
+
+    .tab {
+      flex: 1;
+      justify-content: center;
+      padding-inline: 0.8rem;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+@media (max-width: 414px) {
+  .admin-bookings {
+    .info-line {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+@media (max-width: 390px) {
+  .admin-bookings {
+    .booking-card {
+      padding: 2rem 1.8rem;
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .admin-bookings {
+    .title {
+      font-size: 4.8rem;
+    }
+
+    .customer-name {
+      font-size: 2.8rem;
+    }
+
+    .notice {
+      padding: 4.8rem 1.8rem;
+    }
+  }
+}
+
+
+/* İşlem butonları: telefonlarda tam genişlik */
+@media (max-width: 430px) {
+  .admin-bookings {
+    .actions {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+    }
+
+    .action-primary {
+      width: 100%;
+    }
+
+    .action-secondary {
+      justify-content: center;
+    }
+  }
+}
+
+
+/* Filtre çipleri: telefonlarda iki sütun gibi sarılsın */
+@media (max-width: 430px) {
+  .admin-bookings {
+    .filters {
+      width: 100%;
+      gap: 0.8rem;
+    }
+
+    .chip {
+      flex: 1 1 auto;
+      justify-content: center;
+      padding-inline: 1.2rem;
+      font-size: 1.2rem;
+    }
+  }
+}

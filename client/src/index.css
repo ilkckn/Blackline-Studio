@@ -1,0 +1,311 @@
+/* =====================================================================
+   TOKENS
+   ===================================================================== */
+:root {
+  color-scheme: dark;
+
+  /* Marka renkleri */
+  --coral: #ff5733;
+  --pink: #ff2e7e;
+  --violet: #9d4edd;
+  --amber: #ffb020;
+  --white: #ffffff;
+
+  /* Derin tonlar: beyaz yazılı butonların okunması için %80 */
+  --coral-deep: color-mix(in srgb, var(--coral) 80%, black);
+  --pink-deep: color-mix(in srgb, var(--pink) 80%, black);
+  --violet-deep: color-mix(in srgb, var(--violet) 80%, black);
+
+  /* Koyu tonlar ve yazı renkleri */
+  --t0: #0d0d11; /* sayfa zemini */
+  --t5: #12121a; /* flash panel hücreleri */
+  --t10: #16161f; /* sanatçılar ve yorumlar zemini, koyu kartlar */
+  --t20: #1f1f2b; /* hover */
+  --t30: #2d2d3b; /* çizgiler ve kenarlıklar */
+  --t70: #b4afc2; /* yardımcı metin */
+  --t80: #d9d3e3; /* paragraflar */
+  --t90: #e9e3da; /* ana metin */
+  --t100: #fff4ea; /* başlıklar */
+
+  /* Gradyanlar */
+  --grad: linear-gradient(
+    135deg,
+    var(--coral) 0%,
+    var(--pink) 52%,
+    var(--violet) 100%
+  );
+  --grad-warm: linear-gradient(
+    135deg,
+    var(--coral) 0%,
+    var(--pink) 60%,
+    color-mix(in srgb, var(--pink) 60%, var(--violet)) 100%
+  );
+  --grad-deep: linear-gradient(
+    135deg,
+    var(--coral-deep) 0%,
+    var(--pink-deep) 52%,
+    var(--violet-deep) 100%
+  );
+  --grad-label: linear-gradient(90deg, var(--coral), var(--pink));
+  --grad-strip: linear-gradient(
+    90deg,
+    var(--coral),
+    var(--pink),
+    var(--violet)
+  );
+
+  /* Glow gölgeleri (butonlar) */
+  --glow: 0 0 3.2rem color-mix(in srgb, var(--pink) 38%, transparent);
+  --glow-strong: 0 0 4.6rem color-mix(in srgb, var(--pink) 62%, transparent);
+
+  /* Fontlar (index.html'deki <link> ile yükleniyor) */
+  --font1: "Big Shoulders", "Big Shoulders Display", "Oswald", "Arial Narrow",
+    sans-serif;
+  --font2: "Instrument Sans", "Helvetica Neue", sans-serif;
+
+  /* Yerleşim */
+  --container: 144rem;
+  --gutter: clamp(2rem, 5vw, 7.2rem);
+  --section-y: clamp(6.4rem, 9vw, 11.2rem);
+
+  /* Köşe yuvarlaklıkları */
+  --radius-tile: 2rem;
+  --radius-card: 2.4rem;
+  --radius-pill: 99.9rem;
+}
+
+/* =====================================================================
+   RESET VE TEMEL AYARLAR
+   ===================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%; /* 1rem = 10px */
+  scroll-behavior: smooth;
+  scroll-padding-top: 9.6rem; /* bölüme kayarken sabit Navbar'ın altında kalmasın */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100dvh;
+  overflow-x: clip; /* taşan glow'lar yatay kaydırma çıkarmasın */
+  background-color: var(--t0);
+  color: var(--t90);
+  font-family: var(--font2);
+  font-size: 1.6rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Footer her zaman en altta kalsın */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+main {
+  flex: 1;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 0.3rem solid var(--t100);
+  outline-offset: 0.3rem;
+}
+
+::selection {
+  background-color: var(--pink);
+  color: var(--t0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* =====================================================================
+   ORTAK YARDIMCI SINIFLAR
+   ===================================================================== */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--section-y);
+}
+
+/* Başlık fontu: Big Shoulders, büyük harf */
+.disp {
+  font-family: var(--font1);
+  text-transform: uppercase;
+}
+
+/* Küçük etiket */
+.label {
+  font-family: var(--font2);
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+/* Gradyan yazı: öğe inline-block olmalı */
+.gtext,
+.glabel {
+  display: inline-block;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.gtext {
+  background-image: var(--grad);
+}
+
+.glabel {
+  background-image: var(--grad-label);
+}
+
+/* İnce gradyan çizgi */
+.gline {
+  height: 0.3rem;
+  background-image: var(--grad);
+}
+
+/* Butonlar */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  min-height: 5.2rem;
+  padding-inline: 3rem;
+  border: 0;
+  border-radius: var(--radius-pill);
+  font-family: var(--font2);
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--white);
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s,
+    background-color 0.2s;
+
+  &:hover {
+    transform: translateY(-0.2rem);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+.btn-primary {
+  background-image: var(--grad-deep);
+  box-shadow: var(--glow);
+
+  &:hover {
+    box-shadow: var(--glow-strong);
+  }
+}
+
+.btn-dark {
+  background-color: var(--t0);
+
+  &:hover {
+    background-color: var(--t20);
+  }
+}
+
+/* Alt çizgili metin linki */
+.textlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  min-height: 4.4rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--t100);
+  text-decoration: underline;
+  text-decoration-color: var(--pink);
+  text-decoration-thickness: 0.2rem;
+  text-underline-offset: 0.5rem;
+}
+
+/* Gradyan zemin üzerindeki alanlarda odak çerçevesi koyu olsun */
+.on-gradient :focus-visible {
+  outline-color: var(--t0);
+}
+
+/* Sadece ekran okuyucular için */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 560px) {
+  .btn {
+    padding-inline: 2.2rem;
+  }
+}

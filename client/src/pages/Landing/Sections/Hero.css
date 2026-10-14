@@ -1,0 +1,356 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--t0);
+
+  /* ---------- Arkadaki renkli ışıklar ---------- */
+  .glow {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .glow-coral {
+    top: -16rem;
+    left: -20rem;
+    width: 76rem;
+    height: 76rem;
+    background-image: radial-gradient(
+      closest-side,
+      color-mix(in srgb, var(--coral) 36%, transparent),
+      transparent
+    );
+  }
+
+  .glow-violet {
+    top: 6rem;
+    right: -22rem;
+    width: 82rem;
+    height: 82rem;
+    background-image: radial-gradient(
+      closest-side,
+      color-mix(in srgb, var(--violet) 44%, transparent),
+      transparent
+    );
+  }
+
+  .glow-pink {
+    bottom: -26rem;
+    left: 30%;
+    width: 64rem;
+    height: 64rem;
+    background-image: radial-gradient(
+      closest-side,
+      color-mix(in srgb, var(--pink) 26%, transparent),
+      transparent
+    );
+  }
+
+  /* ---------- Yerleşim: sol yazılar, sağ panel ---------- */
+  .content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(52rem, 100%), 1fr));
+    gap: 6.4rem;
+    align-items: center;
+    padding-top: 5.6rem;
+    padding-bottom: clamp(7.2rem, 8vw, 11.2rem);
+  }
+
+  .copy {
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+  }
+
+  .eyebrow-line {
+    width: 4.4rem;
+  }
+
+  /* ---------- Başlık ---------- */
+  .title {
+    color: var(--t100);
+    font-size: clamp(5.2rem, 7.6vw, 11.8rem);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+  }
+
+  .line {
+    display: block;
+  }
+
+  /* İçi boş, sadece kenarı çizgili yazı */
+  .outline {
+    color: transparent;
+    -webkit-text-stroke: 0.2rem var(--t100);
+  }
+
+  .text {
+    max-width: 47rem;
+    color: var(--t80);
+    font-size: 1.9rem;
+    line-height: 1.55;
+    text-wrap: pretty;
+  }
+
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.2rem 2.8rem;
+  }
+
+  .place {
+    color: var(--t70);
+  }
+
+  /* ---------- Flash panel ---------- */
+  .flash {
+    position: relative;
+    width: 100%;
+    max-width: 56rem;
+    margin-inline: auto;
+  }
+
+  /* Gradyan çerçeve */
+  .flash-frame {
+    display: grid;
+    aspect-ratio: 4 / 5;
+    padding: 0.2rem;
+    border-radius: 2.2rem;
+    background-image: var(--grad);
+    transform: rotate(1.6deg);
+    overflow: hidden;
+  }
+
+  .flash-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: repeat(3, minmax(0, 1fr));
+    gap: 1px;
+    border-radius: 2rem;
+    background-color: var(--t30);
+    overflow: hidden;
+  }
+
+  .cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14%;
+    background-color: var(--t5);
+  }
+
+  /* Her motifin kendi rengi: color = çizgi, --accent = vurgu parçası */
+  .cell-sun {
+    color: var(--amber);
+    --accent: var(--amber);
+  }
+
+  .cell-dagger {
+    color: var(--t100);
+    --accent: var(--coral);
+    --accent2: var(--pink);
+  }
+
+  .cell-eye {
+    color: var(--violet);
+    --accent: var(--pink);
+  }
+
+  .cell-moon {
+    color: var(--t100);
+    --accent: var(--amber);
+  }
+
+  .cell-heart {
+    color: var(--t100);
+    --highlight: var(--t100);
+  }
+
+  .cell-flower {
+    color: var(--pink);
+    --accent: var(--amber);
+  }
+
+  .cell-spiral {
+    color: var(--coral);
+  }
+
+  .cell-bolt {
+    color: var(--amber);
+  }
+
+  .cell-sparkles {
+    color: var(--t100);
+    --accent: var(--coral);
+    --accent2: var(--violet);
+  }
+
+  /* Köşedeki damga rozeti */
+  .stamp {
+    position: absolute;
+    bottom: -3rem;
+    left: -1.4rem;
+    width: 13.2rem;
+    height: 13.2rem;
+  }
+
+  .stamp-text {
+    transform-origin: 66px 66px; /* SVG'nin tam ortası */
+    animation: hero-stamp-spin 16s linear infinite;
+  }
+}
+
+@keyframes hero-stamp-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =====================================================================
+   RESPONSIVE
+   ===================================================================== */
+
+@media (max-width: 1280px) {
+  .hero {
+    .content {
+      gap: 4.8rem;
+    }
+
+    .flash {
+      max-width: 50rem;
+    }
+  }
+}
+
+/* Tablet: tek sütun, panel altta ortada */
+@media (max-width: 1024px) {
+  .hero {
+    .content {
+      grid-template-columns: 1fr;
+      gap: 6.4rem;
+      padding-top: 4.8rem;
+    }
+
+    .flash {
+      max-width: 48rem;
+    }
+  }
+}
+
+/* iPad (820) ve 768 */
+@media (max-width: 820px) {
+  .hero {
+    .text {
+      font-size: 1.8rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    .content {
+      gap: 5.6rem;
+    }
+
+    .copy {
+      gap: 2.8rem;
+    }
+
+    .flash {
+      max-width: 42rem;
+    }
+  }
+}
+
+/* Telefonlar */
+@media (max-width: 560px) {
+  .hero {
+    .glow-coral {
+      width: 42rem;
+      height: 42rem;
+    }
+
+    .glow-violet {
+      width: 46rem;
+      height: 46rem;
+    }
+
+    .glow-pink {
+      width: 36rem;
+      height: 36rem;
+    }
+  }
+}
+
+@media (max-width: 430px) {
+  .hero {
+    .content {
+      gap: 4.8rem;
+      padding-top: 3.2rem;
+    }
+
+    .buttons {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+      gap: 0.8rem;
+    }
+
+    .buttons .btn {
+      width: 100%;
+    }
+
+    .buttons .textlink {
+      justify-content: center;
+    }
+
+    .stamp {
+      bottom: -2.4rem;
+      left: -0.8rem;
+      width: 10.4rem;
+      height: 10.4rem;
+    }
+  }
+}
+
+@media (max-width: 414px) {
+  .hero {
+    .copy {
+      gap: 2.4rem;
+    }
+
+    .text {
+      font-size: 1.7rem;
+    }
+  }
+}
+
+@media (max-width: 390px) {
+  .hero {
+    .content {
+      gap: 4.4rem;
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .hero {
+    .title {
+      font-size: 4.8rem;
+    }
+
+    .text {
+      font-size: 1.6rem;
+    }
+  }
+}

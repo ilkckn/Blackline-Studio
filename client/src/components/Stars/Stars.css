@@ -1,0 +1,9 @@
+.stars {
+  display: flex;
+  gap: 0.3rem;
+  line-height: 1;
+
+  svg {
+    flex-shrink: 0;
+  }
+}

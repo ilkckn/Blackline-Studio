@@ -1,0 +1,75 @@
+.section-header {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(36rem, 100%), 1fr));
+  gap: 2.4rem 6.4rem;
+  align-items: end;
+
+  .heading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.6rem;
+  }
+
+  .title {
+    color: var(--t100);
+    font-size: clamp(4.8rem, 7vw, 10.8rem);
+    font-weight: 900;
+    line-height: 0.9;
+  }
+
+  .side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  .text {
+    max-width: 46rem;
+    color: var(--t80);
+    font-size: 1.8rem;
+    line-height: 1.55;
+    text-wrap: pretty;
+  }
+}
+
+/* =====================================================================
+   RESPONSIVE
+   ===================================================================== */
+
+@media (max-width: 1024px) {
+  .section-header {
+    gap: 2rem 4.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-header {
+    .text {
+      font-size: 1.7rem;
+    }
+  }
+}
+
+@media (max-width: 430px) {
+  .section-header {
+    gap: 1.8rem;
+
+    .heading {
+      gap: 1.2rem;
+    }
+
+    .text {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .section-header {
+    .text {
+      font-size: 1.5rem;
+    }
+  }
+}

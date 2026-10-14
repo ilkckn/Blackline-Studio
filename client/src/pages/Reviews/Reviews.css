@@ -1,0 +1,298 @@
+.reviews-page {
+  background-color: var(--t0);
+
+  /* ---------- Sayfa girişi ---------- */
+  .intro {
+    position: relative;
+    overflow: hidden;
+    padding-block: 8rem 7.2rem;
+  }
+
+  .glow {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .glow-violet {
+    top: -12rem;
+    right: -20rem;
+    width: 76rem;
+    height: 76rem;
+    background-image: radial-gradient(
+      closest-side,
+      color-mix(in srgb, var(--violet) 40%, transparent),
+      transparent
+    );
+  }
+
+  .glow-coral {
+    bottom: -24rem;
+    left: -18rem;
+    width: 62rem;
+    height: 62rem;
+    background-image: radial-gradient(
+      closest-side,
+      color-mix(in srgb, var(--coral) 30%, transparent),
+      transparent
+    );
+  }
+
+  .intro-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2.8rem;
+  }
+
+  .intro-title {
+    color: var(--t100);
+    font-size: clamp(5.2rem, 8vw, 12rem);
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+  }
+
+  .intro-text {
+    max-width: 58rem;
+    color: var(--t80);
+    font-size: 1.9rem;
+    line-height: 1.55;
+    text-wrap: pretty;
+  }
+
+  /* ---------- Liste ---------- */
+  .list {
+    background-color: var(--t10);
+  }
+
+  .list-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2.8rem;
+  }
+
+  .count {
+    color: var(--t70);
+    font-size: 1.4rem;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+  }
+
+  /* ---------- Yorum kartı ---------- */
+  .review {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2.4rem;
+    margin: 0;
+    padding: 3.2rem;
+    border: 1px solid var(--t30);
+    border-radius: var(--radius-card);
+    background-color: var(--t0);
+
+    .stars {
+      color: var(--amber);
+      font-size: 1.8rem;
+    }
+  }
+
+  .review-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem 1.6rem;
+  }
+
+  .review-date {
+    color: var(--t70);
+    font-size: 1.4rem;
+  }
+
+  .review-comment {
+    margin: 0;
+    color: var(--t90);
+    font-size: 1.8rem;
+    line-height: 1.55;
+    text-wrap: pretty;
+    overflow-wrap: anywhere;
+  }
+
+  .review-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.2rem;
+  }
+
+  .review-author {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .review-name {
+    color: var(--t100);
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+
+  .review-artist {
+    color: var(--t70);
+    font-size: 1.4rem;
+  }
+
+  .artist-link {
+    color: var(--t100);
+    text-decoration: underline;
+    text-decoration-color: var(--pink);
+    text-decoration-thickness: 0.2rem;
+    text-underline-offset: 0.4rem;
+  }
+
+  .review-verified {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: var(--t70);
+
+    svg {
+      font-size: 1.8rem;
+    }
+  }
+
+  /* ---------- Yükleniyor ve boş durumlar ---------- */
+  .skeleton {
+    min-height: 24rem;
+    border: 0;
+    background-image: linear-gradient(
+      110deg,
+      var(--t0) 30%,
+      var(--t20) 50%,
+      var(--t0) 70%
+    );
+    background-size: 200% 100%;
+    animation: reviews-page-shimmer 1.4s linear infinite;
+  }
+
+  .notice {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.6rem;
+    padding: 5.6rem 2.4rem;
+    border: 1px dashed var(--t30);
+    border-radius: var(--radius-card);
+    color: var(--t80);
+    font-size: 1.7rem;
+    text-align: center;
+  }
+}
+
+@keyframes reviews-page-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+/* =====================================================================
+   RESPONSIVE
+   ===================================================================== */
+
+@media (max-width: 1280px) {
+  .reviews-page {
+    .review {
+      padding: 2.8rem;
+    }
+  }
+}
+
+/* Tablet: kartlar alt alta */
+@media (max-width: 1024px) {
+  .reviews-page {
+    .intro {
+      padding-block: 6.4rem 6rem;
+    }
+
+    .list-content {
+      gap: 2.4rem;
+    }
+
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+@media (max-width: 820px) {
+  .reviews-page {
+    .intro-text {
+      font-size: 1.8rem;
+    }
+  }
+}
+
+@media (max-width: 430px) {
+  .reviews-page {
+    .intro {
+      padding-block: 4.8rem;
+    }
+
+    .grid {
+      gap: 1.6rem;
+    }
+
+    .review {
+      gap: 2rem;
+      padding: 2.4rem 2.2rem;
+    }
+
+    .review-comment {
+      font-size: 1.7rem;
+    }
+  }
+}
+
+@media (max-width: 414px) {
+  .reviews-page {
+    .intro-content {
+      gap: 2.4rem;
+    }
+
+    .intro-text {
+      font-size: 1.7rem;
+    }
+  }
+}
+
+@media (max-width: 390px) {
+  .reviews-page {
+    .review {
+      padding: 2.2rem 2rem;
+    }
+  }
+}
+
+@media (max-width: 375px) {
+  .reviews-page {
+    .intro-title {
+      font-size: 4.8rem;
+    }
+
+    .review-comment {
+      font-size: 1.6rem;
+    }
+
+    .notice {
+      padding: 4rem 1.8rem;
+    }
+  }
+}
