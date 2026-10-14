@@ -88,7 +88,7 @@ It is also a portfolio piece for [MCCreative Studio](https://www.mccreativestudi
 
 - ## Live demo
 
-- **App:** https://client-sigma-two-55.vercel.app
+- **App:** https://blacklinetattoostudioproject.vercel.app/
 - **API health check:** https://mccreative-blackline-api.onrender.com/api/health
 
 > The API runs on a free Render instance that sleeps when idle, so the very first
