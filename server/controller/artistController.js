@@ -65,7 +65,7 @@ export const getAllArtists = asyncHandler(async (req, res) => {
 });
 
 export const getArtistById = asyncHandler(async (req, res) => {
-  const artist = await Artist.findById({
+  const artist = await Artist.findOne({
     _id: req.params.id,
     isActive: true,
   }).populate("user", "name userName email");

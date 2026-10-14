@@ -44,7 +44,7 @@ export const updateUser = asyncHandler(async (req, res) => {
     const updatedUser = await User.findByIdAndUpdate(
       id,
       { name, userName, email, phone },
-      { new: true, runValidators: true },
+      { returnDocument: "after", runValidators: true },
     ).select("-password");
 
     if (!updatedUser) {
@@ -81,7 +81,7 @@ export const deactivateUser = asyncHandler(async (req, res) => {
   const user = await User.findByIdAndUpdate(
     id,
     { isActive: false },
-    { new: true },
+    { returnDocument: "after" },
   ).select("-password");
 
   if (!user) {
@@ -106,7 +106,7 @@ export const reactivateUser = asyncHandler(async (req, res) => {
   const user = await User.findByIdAndUpdate(
     id,
     { isActive: true },
-    { new: true },
+    { returnDocument: "after" },
   ).select("-password");
 
   if (!user) {
@@ -148,7 +148,7 @@ export const updateUserRole = asyncHandler(async (req, res) => {
   const user = await User.findByIdAndUpdate(
     id,
     { role: finalRoles },
-    { new: true, runValidators: true },
+    { returnDocument: "after", runValidators: true },
   ).select("-password");
 
   if (!user) {

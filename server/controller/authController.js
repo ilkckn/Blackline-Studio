@@ -17,6 +17,10 @@ export const registerUser = asyncHandler(async (req, res) => {
     throw new CustomError("User already exists", 400);
   }
 
+  if (typeof password !== "string" || password.length < 6) {
+    throw new CustomError("Password must be at least 6 characters long", 400);
+  }
+
   const hashedPassword = await bcrypt.hash(password, 10);
 
   const newUser = await User.create({
@@ -48,6 +52,13 @@ export const changePassword = asyncHandler(async (req, res) => {
 
   if (!currentPassword || !newPassword) {
     throw new CustomError("Please provide both current and new passwords", 400);
+  }
+
+  if (typeof newPassword !== "string" || newPassword.length < 6) {
+    throw new CustomError(
+      "New password must be at least 6 characters long",
+      400,
+    );
   }
 
   if (req.user.id !== id) {
