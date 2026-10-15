@@ -9,8 +9,7 @@ const styles = [
   "Lettering",
 ];
 
-// Aynı listeyi iki kez yan yana koyuyoruz. İlk yarı ekrandan çıkınca animasyon
-// başa döner ve kesintisiz bir şerit gibi görünür.
+// Stil adlarının bir kopyası
 const Group = () => (
   <div className="group">
     {styles.map((style) => (
@@ -27,12 +26,20 @@ const Group = () => (
   </div>
 );
 
+// Kaç kopya yan yana dizilecek? Şerit, ekran genişliğinden UZUN olmak zorunda,
+// yoksa geniş ekranlarda (örneğin 49 inç) bir kısmı boş kalır. Bir kopya yaklaşık
+// 1800 piksel, 6 kopya yaklaşık 10.000 piksel eder: en geniş ekranları da doldurur.
+// Animasyon her seferinde tam BİR kopya kadar kayar, sonra başa döner. Kopyalar
+// birbirinin aynısı olduğu için başa dönüş fark edilmez ve şerit kesintisiz akar.
+const COPIES = 6;
+
 const StyleStrip = () => {
   return (
     <div className="style-strip" aria-hidden="true">
-      <div className="track">
-        <Group />
-        <Group />
+      <div className="track" style={{ "--copies": COPIES }}>
+        {Array.from({ length: COPIES }, (_, index) => (
+          <Group key={index} />
+        ))}
       </div>
     </div>
   );

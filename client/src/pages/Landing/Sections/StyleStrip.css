@@ -6,6 +6,7 @@
     display: flex;
     width: max-content;
     animation: style-strip-scroll 40s linear infinite;
+    will-change: transform;
   }
 
   .group {
@@ -39,9 +40,11 @@
   }
 }
 
+/* Her seferinde tam BİR kopya kadar kay: track'in genişliğinin 1/--copies'i.
+   Sağdan sola akar (negatif yön). */
 @keyframes style-strip-scroll {
   to {
-    transform: translateX(-50%);
+    transform: translateX(calc(-100% / var(--copies)));
   }
 }
 
