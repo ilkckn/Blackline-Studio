@@ -68,19 +68,19 @@ const Footer = () => {
             <ul className="contact-list">
               <li className="contact-item">
                 <MdOutlineLocationOn />
-                <span>[STREET, CITY]</span>
+                <span>Basel, Switzerland</span>
               </li>
               <li className="contact-item">
                 <MdOutlineAccessTime />
-                <span>[OPENING HOURS]</span>
+                <span>Monday - Friday: 10:00 - 18:00</span>
               </li>
               <li className="contact-item">
                 <MdOutlineMail />
-                <span>[EMAIL]</span>
+                <span>info@blackline.com</span>
               </li>
               <li className="contact-item">
                 <MdOutlinePhone />
-                <span>[PHONE]</span>
+                <span>+41 12 345 67 89</span>
               </li>
             </ul>
           </div>
